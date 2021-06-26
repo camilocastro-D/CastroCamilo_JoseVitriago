@@ -1,8 +1,6 @@
 import requests
 from consumo_api import get_weather_city
 
-print ("CLIMA MUNDO")
-
 
 params ={}
 params ["q"] = "London"
@@ -65,18 +63,63 @@ def show_forecast(forecast):
             print(item + ': ' + info[item])
         print()
 
+def salir():
+    print('But... Luke.... I\'m your father')
+    print('Please....')
+
 def main():
     main_menu_exit = False
+    # Bucle infinito
+    print('------------------------------------------------')
+    print('      . BIENVENIDO AL CLIMA CON PAUL VASO')
+    print('------------------------------------------------')
     while not main_menu_exit:
-        print('Seleccione una opcion: ')
-        (
-            ["Clima por ciudad", "Clima por coordenadas", "Pronostico por ciudad", "Pronostico por coordenadas", 'Salir'])
-        
+        # Opciones
+        opciones =[{
+            'description': "Clima por ciudad", 
+            'flag': '-cc',
+            'action': 'REEMPlAZAR POR FUNCION'
+        },
+        {
+            'description': "Clima por coordenadas",
+            'flag': '-cl',
+            'action': 'Otra funcion'
+        },
+        {
+            'description': "Pronostico por ciudad",
+            'flag': '-pc',
+            'action': 'OTRA FUNCION'
+        },
+        {
+            'description': "Pronostico por cooreenadas",
+            'flag': '-pl',
+            'action': 'OTRA FUNCION'
+        },
+        {
+            'description': "Salir de la aplicacion",
+            'flag': '-qq',
+            'action': salir
+        }]
+        # Imprimir menu de opciones
+        print('|  OPCION |  INFORMACION')
+        print('------------------------------------------------')
+        for opcion in opciones:
+            print('|   ' +opcion['flag']+'   |  '+ opcion['description'])
+            print('------------------------------------------------')
+            
+        # Insertar el input de opcion
+        into = input('Seleccione una opcion: ')
+        # bandera para chequear si existe
+        match = False
 
-        
+
+        # revisar opciones a ver si el input esta en la lista
+        for opcion in opciones:
+            if opcion['flag'] == into:
+                # AQUI EJECUTAR LA ACCION QUE QUIERAN 
+                opcion['action']()
+                match = True
+        main_menu_exit = match
+                
 if __name__ == "__main__":
     main()
-
-
-
-   
